@@ -10,10 +10,10 @@
                 url: '/',
                 templateUrl: '/templates/landing.html'
             })
-        .state('controller', {
-            url: '/collection',
-            templateUrl:'/templates/collection.html'
-        })
+            .state('collection', {
+                url: '/collection',
+                templateUrl: '/templates/collection.html'
+            })
             .state('album', {
                 url: '/album',
                 templateUrl: '/templates/album.html'
