@@ -70,15 +70,15 @@
         Fixtures.getAlbum = function () {
             return albumPicasso;
         };
-        
-        Fixtures.getCollection= function(numberOfAlbums) {
-             var talbums = [];
-             for (var i = 0; i < numberOfAlbums; i++) {
-                 talbums.push(Fixtures.getAlbum());
-             }
-             return talbums;
+
+        Fixtures.getCollection = function (numberOfAlbums) {
+            var talbums = [];
+            for (var i = 0; i < numberOfAlbums; i++) {
+                talbums.push(Fixtures.getAlbum());
+            }
+            return talbums;
         };
-        
+
         return Fixtures;
     }
 
