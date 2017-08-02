@@ -1,6 +1,19 @@
  (function () {
+     /**
+          * @function SongPlayer
+          * @desc Major player functions
+          * @returns {Object} Object that implemetns basic play/pause functionality
+          */
      function SongPlayer() {
+         /**
+          * @desc object of the simple media operations
+          * @type {Object}
+          */
          var SongPlayer = {};
+         /**
+          * @desc flag of the song state
+          * @type {boolean}
+          */
          var currentSong = null;
          /**
           * @desc Buzz object audio file
@@ -25,20 +38,37 @@
 
              currentSong = song;
          };
+         /**
+          * @function playSong
+          * @desc plays currentBuzzObject and changes currentSong.playting to true
+          */
+         var playSong = function () {
+             currentBuzzObject.play();
+             currentSong.playing = true;
+         };
 
+         /**
+          * @ngdoc function
+          * @name SongpPlayer.play
+          * @description This method playing the song
+          * @param {Object} song
+          */
          SongPlayer.play = function (song) {
              if (currentSong !== song) {
                  setSong(song);
-                 currentBuzzObject.play();
-                 song.playing = true;
+                 playSong();
              } else if (currentSong === song) {
                  if (currentBuzzObject.isPaused()) {
-                     currentBuzzObject.play();
-                     song.playing = true;
+                     playSong();
                  }
              }
          };
-
+         /**
+          * @ngdoc function
+          * @name SongpPlayer.pause
+          * @description This method pausing the song 
+          * @param {Object} song
+          */
          SongPlayer.pause = function (song) {
              currentBuzzObject.pause();
              song.playing = false;
