@@ -4,7 +4,7 @@
       * @desc Major player functions
       * @returns {Object} Object that implemetns basic play/pause functionality
       */
-     function SongPlayer(Fixtures) {
+     function SongPlayer($rootScope, Fixtures) {
          /**
           * @desc object of the simple media operations
           * @type {Object}
@@ -36,6 +36,12 @@
                  preload: true
              });
 
+             currentBuzzObject.bind('timeupdate', function () {
+                 $rootScope.$apply(function () {
+                     SongPlayer.currentTime = currentBuzzObject.getTime();
+                 });
+             });
+
              SongPlayer.currentSong = song;
          };
          /**
@@ -50,15 +56,21 @@
          var getSongIndex = function (song) {
              return currentAlbum.songs.indexOf(song);
          };
-         
-         var stopSong = function() {
+
+         var stopSong = function () {
              currentBuzzObject.stop();
              SongPlayer.currentSong.playing = null
-             
+
          }
 
 
          SongPlayer.currentSong = null;
+
+         /**
+          * @desc Current playback time (in seconds) of currently playing song
+          * @type {Number}
+          */
+         SongPlayer.currentTime = null;
 
          /**
           * @ngdoc function
@@ -100,7 +112,7 @@
                  playSong(song);
              }
          };
-         
+
          SongPlayer.next = function () {
              var currentSongIndex = getSongIndex(SongPlayer.currentSong);
              currentSongIndex++;
@@ -118,5 +130,5 @@
 
      angular
          .module('blocJams')
-         .factory('SongPlayer', ['Fixtures', SongPlayer]);
+         .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
  })();
