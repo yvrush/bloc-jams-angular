@@ -69,9 +69,6 @@
          /**
           * @desc Current playback time (in seconds) of currently playing song
           * @type {Number}
-          */
-         SongPlayer.currentTime = null;
-
          /**
           * @ngdoc function
           * @name SongpPlayer.play
@@ -124,6 +121,16 @@
                  playSong(song);
              }
          };
+
+         SongPlayer.volume = 80;
+         
+         SongPlayer.setVolume = function (volume) {
+             
+             if (currentBuzzObject) {
+                 currentBuzzObject.setVolume(volume);
+             }
+         };
+
 
          return SongPlayer;
      }
